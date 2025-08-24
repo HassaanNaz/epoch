@@ -18,7 +18,6 @@ html, body, #root {
   min-height: 100vh;
 }
 
-/* green overlay covers the whole container and is pointer-events:none so it doesn't block clicks */
 .page-bg::after{
   content: "";
   position: absolute;
@@ -30,28 +29,21 @@ html, body, #root {
               rgba(16,185,129,0.75) 100%);
   opacity: 0;
   transition: opacity 450ms ease-in-out;
-  mix-blend-mode: screen; /* try 'overlay' or 'screen' to get different effects */
-  z-index: 40; /* sits above background but below UI with higher z-index */
+  mix-blend-mode: screen;
+  z-index: 40;
 }
-
-/* toggled class: briefly show the red wash */
 .page-bg.red-pulse::after{
-  /* soft to vivid red gradient */
   background: linear-gradient(135deg,
               rgba(255,235,238,0.92) 0%,
               rgba(249,115,115,0.90) 50%,
               rgba(220,38,38,0.86) 100%);
   opacity: 0.92;
   transition: opacity 450ms ease-in-out;
-  mix-blend-mode: screen; /* try 'overlay' for a stronger effect */
+  mix-blend-mode: screen;
 }
-
-/* longer fade-out for a nicer feel */
 .page-bg.red-pulse.fade-out::after{
   transition: opacity 900ms cubic-bezier(.2,.9,.2,1);
 }
-
-/* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .page-bg::after,
   .page-bg.red-pulse::after {
@@ -59,19 +51,13 @@ html, body, #root {
     opacity: 0;
   }
 }
-
-/* toggled class: briefly show the green wash */
 .page-bg.green-pulse::after{
   opacity: 0.95;
   transition: opacity 450ms ease-in-out;
 }
-
-/* a slightly longer fade-out for a nicer feel */
 .page-bg.green-pulse.fade-out::after{
   transition: opacity 900ms cubic-bezier(.2,.9,.2,1);
 }
-
-/* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .page-bg::after,
   .page-bg.green-pulse::after {
