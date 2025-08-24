@@ -19,6 +19,7 @@ function App() {
 
 
   async function startGame() {
+    setScore(0);
     setReveal(false);
     setEvent1(await get_event());
     setEvent2(await get_event());
