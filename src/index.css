@@ -5,10 +5,6 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -20,4 +16,66 @@ html, body, #root {
   padding: 0;
   width: 100%;
   min-height: 100vh;
+}
+
+/* green overlay covers the whole container and is pointer-events:none so it doesn't block clicks */
+.page-bg::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg,
+              rgba(167,243,208,0.85) 0%,
+              rgba(52,211,153,0.80) 50%,
+              rgba(16,185,129,0.75) 100%);
+  opacity: 0;
+  transition: opacity 450ms ease-in-out;
+  mix-blend-mode: screen; /* try 'overlay' or 'screen' to get different effects */
+  z-index: 40; /* sits above background but below UI with higher z-index */
+}
+
+/* toggled class: briefly show the red wash */
+.page-bg.red-pulse::after{
+  /* soft to vivid red gradient */
+  background: linear-gradient(135deg,
+              rgba(255,235,238,0.92) 0%,
+              rgba(249,115,115,0.90) 50%,
+              rgba(220,38,38,0.86) 100%);
+  opacity: 0.92;
+  transition: opacity 450ms ease-in-out;
+  mix-blend-mode: screen; /* try 'overlay' for a stronger effect */
+}
+
+/* longer fade-out for a nicer feel */
+.page-bg.red-pulse.fade-out::after{
+  transition: opacity 900ms cubic-bezier(.2,.9,.2,1);
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .page-bg::after,
+  .page-bg.red-pulse::after {
+    transition: none;
+    opacity: 0;
+  }
+}
+
+/* toggled class: briefly show the green wash */
+.page-bg.green-pulse::after{
+  opacity: 0.95;
+  transition: opacity 450ms ease-in-out;
+}
+
+/* a slightly longer fade-out for a nicer feel */
+.page-bg.green-pulse.fade-out::after{
+  transition: opacity 900ms cubic-bezier(.2,.9,.2,1);
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .page-bg::after,
+  .page-bg.green-pulse::after {
+    transition: none;
+    opacity: 0;
+  }
 }

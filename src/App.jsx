@@ -15,6 +15,8 @@ function App() {
   const [event1, setEvent1] = useState(null);
   const [event2, setEvent2] = useState(null);
 
+  const [score, setScore] = useState(0)
+
 
   async function startGame() {
     setReveal(false);
@@ -46,6 +48,18 @@ function App() {
 
     setReveal(true);
 
+      if (event1.date == event2.date) {
+        setScore(score + 1);
+        triggerGreenPulse();
+      } else {
+        if (e.target.innerHTML == answer) {
+          setScore(score + 1);
+          triggerGreenPulse();
+        } else {
+          triggerRedPulse();
+        }
+      }
+
     setTimeout(() => {
       setReveal(false);
 
@@ -58,7 +72,7 @@ function App() {
           setStart(false);
         }
       }
-    }, 1000);
+    }, 600);
 
   }
 
@@ -67,58 +81,125 @@ function App() {
     setEvent2(await get_event());
   }
 
+  function triggerGreenPulse(containerSelector = '.page-bg', visibleMs = 600) {
+    const el = document.querySelector(containerSelector);
+    if (!el) return;
+    el.classList.remove('green-pulse', 'fade-out');
+    void el.offsetWidth;
+    el.classList.add('green-pulse');
+
+    setTimeout(() => {
+      el.classList.add('fade-out');        
+      el.classList.remove('green-pulse'); 
+      setTimeout(() => el.classList.remove('fade-out'), 1000);
+    }, visibleMs);
+  }
+
+  function triggerRedPulse(containerSelector = '.page-bg', visibleMs = 600) {
+    const el = document.querySelector(containerSelector);
+    if (!el) return;
+    el.classList.remove('red-pulse', 'fade-out');
+
+    void el.offsetWidth;
+
+    el.classList.add('red-pulse');
+
+    setTimeout(() => {
+      el.classList.add('fade-out');       
+      el.classList.remove('red-pulse');  
+
+      setTimeout(() => el.classList.remove('fade-out'), 1000);
+    }, visibleMs);
+  }
+
+
   return (
     <>
-      {start && 
-      
-        <div className="h-screen w-full flex">
-          <div className="h-full w-1/2 flex flex-col items-center justify-center p-6">
-            <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
-                {event1.event_name}
-                <br></br>
-                {event1.date}
-              </div>
+      {start &&       
+      <div className="page-bg relative h-screen w-full flex bg-gradient-to-br from-cyan-100 via-blue-300 to-indigo-400 flex-col lg:flex-row">
 
-            </div>
+          <div className="absolute top-6 left-1/2 -translate-x-1/2 px-5 py-2 rounded-full bg-white backdrop-blur-md border border-white/20 text-black text-lg font-semibold shadow-md">
+            Score: {score}
           </div>
 
-          <div className="h-full w-1/2 flex flex-col items-center justify-center p-6">
-            <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
-                {event2.event_name}
-              </div>
+        <div className="h-full lg:w-1/2 flex items-center justify-center p-8">
+          <div className="w-full lg:h-auto h-full bg-white border border-gray-100 rounded-3xl p-8 shadow-lg text-center max-w-lg">
+            <h3 className="text-slate-900 text-3xl sm:text-4xl font-extrabold tracking-tight">
+              {event1.event_name}
+            </h3>
 
-              {reveal && 
-                <div className="text-2xl sm:text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
-                  {event2.date}
-                </div>
-              }
-
-              <div className="flex gap-3 justify-center">
-                <button id="earlier" onClick={answer} type="button" className="px-4 py-2 rounded-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 transition">
-                  Earlier
-                </button>
-
-                <button id="later" onClick={answer} type="button" className="px-4 py-2 rounded-md bg-indigo-600 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 transition">
-                  Later
-                </button>
-              </div>
+            <div className="mt-3 text-sm sm:text-base text-slate-600">
+              {event1.date}
             </div>
+
+            {/* <div className="mt-4 text-xs text-slate-400">Place the events in order</div> */}
           </div>
-         
         </div>
+
+        <div className="h-full lg:w-1/2 flex items-center justify-center p-8">
+          <div className="w-full lg:h-auto  h-full bg-white border border-gray-100 rounded-3xl p-8 shadow-lg text-center max-w-lg">
+            <h3 className="text-slate-900 text-3xl sm:text-4xl font-extrabold tracking-tight">
+              {event2.event_name}
+            </h3>
+
+            {reveal && (
+              <div className="mt-3 text-sm sm:text-base text-slate-600">
+                {event2.date}
+              </div>
+            )}
+
+            <div className="mt-6 flex gap-4 justify-center">
+              <button
+                id="earlier"
+                onClick={answer}
+                type="button"
+                className="px-5 py-3 rounded-lg border border-indigo-200 bg-white text-indigo-700 text-sm font-medium hover:shadow-md focus:outline-none focus:ring-4 focus:ring-indigo-200 focus:ring-offset-2 transition transform active:scale-95"
+                aria-label="Choose earlier"
+              >
+                Earlier
+              </button>
+
+              <button
+                id="later"
+                onClick={answer}
+                type="button"
+                className="px-5 py-3 rounded-lg bg-gradient-to-br from-emerald-400 via-sky-400 to-indigo-500 text-sm font-semibold text-white hover:brightness-105 focus:outline-none focus:ring-4 focus:ring-emerald-200 focus:ring-offset-2 transition transform active:scale-95"
+                aria-label="Choose later"
+              >
+                Later
+              </button>
+            </div>
+
+            {/* <div className="mt-4 text-xs text-slate-400">Tip: use ← / → to choose</div> */}
+          </div>
+        </div>
+      </div>
 
       }
 
       {!start && 
       
-        <div className="h-screen w-full flex items-center justify-center">
-          <div className="flex flex-col items-center">
-            <div className="text-white text-6xl">Epoch</div>
-            <button onClick={startGame} className="border-solid border-white p-1 pr-4 pl-4 text-2xl outline-2 rounded-2xl mt-20">Play</button>
-          </div>
+      <div className="h-screen w-full flex items-center justify-center bg-gradient-to-br from-cyan-100 via-blue-300 to-indigo-400">
+        <div className="flex flex-col items-center bg-white border border-gray-200 rounded-2xl p-8 max-w-md text-center shadow-lg">
+          <h1 className="text-slate-900 text-4xl sm:text-5xl font-extrabold tracking-tight">
+            Epoch
+          </h1>
+
+          <p className="mt-3 text-sm sm:text-base text-slate-600">
+            Put events in order — quick, fun, and simple.
+          </p>
+
+          <button
+            onClick={startGame}
+            aria-label="Start game"
+            className="mt-8 inline-flex items-center justify-center gap-3 px-8 py-3 rounded-2xl text-xl sm:text-2xl font-semibold
+                      bg-indigo-600 hover:bg-indigo-700 text-white shadow-md hover:shadow-lg active:scale-95 transform transition-all duration-200
+                      focus:outline-none focus:ring-4 focus:ring-indigo-200 focus:ring-offset-2"
+          >
+            Play
+          </button>
         </div>
+      </div>
     
       }
     </>
