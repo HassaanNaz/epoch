@@ -123,7 +123,7 @@ function App() {
           </div>
 
         <div className="h-full lg:w-1/2 flex items-center justify-center p-8">
-          <div className="w-full lg:h-auto h-full bg-white border border-gray-100 rounded-3xl p-8 shadow-lg text-center max-w-lg">
+          <div className="w-full h-auto bg-white border border-gray-100 rounded-3xl p-8 shadow-lg text-center max-w-lg">
             <h3 className="text-slate-900 text-3xl sm:text-4xl font-extrabold tracking-tight">
               {event1.event_name}
             </h3>
@@ -137,7 +137,7 @@ function App() {
         </div>
 
         <div className="h-full lg:w-1/2 flex items-center justify-center p-8">
-          <div className="w-full lg:h-auto  h-full bg-white border border-gray-100 rounded-3xl p-8 shadow-lg text-center max-w-lg">
+          <div className="w-full h-auto bg-white border border-gray-100 rounded-3xl p-8 shadow-lg text-center max-w-lg">
             <h3 className="text-slate-900 text-3xl sm:text-4xl font-extrabold tracking-tight">
               {event2.event_name}
             </h3>
