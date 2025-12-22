@@ -1,20 +1,38 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Epoch
 
-# Run and deploy your AI Studio app
+Put events in order — quick, fun, and simple.
 
-This contains everything you need to run your app locally.
+Epoch is a web-based game where players guess which historical event happened earlier or later. Built with **React**, **Vite**, and **Supabase**.
 
-View your app in AI Studio: https://ai.studio/apps/temp/1
+---
 
-## Run Locally
+## Features
 
-**Prerequisites:**  Node.js
+* Simple gameplay: guess which event came first
+* Clean UI with Tailwind CSS and animations
+* Score tracking with local best score saving
+* Online leaderboard powered by Supabase
+* Persistent storage of best scores in browser
 
+---
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Tech Stack
+
+* **Frontend:** React + Vite
+* **Styling:** Tailwind CSS
+* **Backend / Database:** Supabase
+
+---
+
+## How to Play
+
+1. Press **Play** on the home screen.
+2. You’ll see two events — decide if the second happened *Earlier* or *Later* than the first.
+3. Continue until you get one wrong.
+4. Submit your score to the **Leaderboard** (optional).
+
+---
+
+## Play
+
+* Play the game at https://epoch-game.vercel.app/
