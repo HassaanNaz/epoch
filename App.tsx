@@ -193,7 +193,7 @@ const App: React.FC = () => {
     (async () => {
       setIsLoading(true);
       try {
-        const rows = await loadLeaderboard(20);
+        const rows = await loadLeaderboard(500);
         setLeaderboard(rows);
       } catch (err) {
         console.error('Failed to load leaderboard', err);
