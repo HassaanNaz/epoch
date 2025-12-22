@@ -12,7 +12,7 @@ const BackgroundCollage: React.FC<{ dimmed?: boolean }> = ({ dimmed }) => {
   const collageItems = useMemo(
     () => [
       { text: "Moon Landing", img: "https://images-ext-1.discordapp.net/external/4bnJbFu-hdNstmuOlvh0WbVEtO6AgwCuUe_Pl-FJURM/%3Fwidth%3D1200%26height%3D800/https/images.pdimagearchive.org/collections/hi-res-images-from-the-apollo-missions/21963933086_87f208be4a_o.jpg?format=webp", top: "2%", left: "-2%", rotate: "-15deg", size: "lg", aspect: "aspect-[4/5]" },
-      { text: "Great Pyramid of Giza Completed", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Giza-pyramids.JPG/1200px-Giza-pyramids.JPG?20110715063524", top: "25%", left: "-10%", rotate: "12deg", size: "lg", aspect: "aspect-[3/4]" },
+      { text: "Great Pyramid of Giza", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Giza-pyramids.JPG/1200px-Giza-pyramids.JPG?20110715063524", top: "25%", left: "-10%", rotate: "12deg", size: "lg", aspect: "aspect-[3/4]" },
       { text: "Viking Landing in North America", img: "https://upload.wikimedia.org/wikipedia/commons/5/51/Carlb-ansemeadows-vinland-03.jpg", top: "82%", left: "1%", rotate: "9deg", size: "lg", aspect: "aspect-[4/5]" },
       { text: "Titanic Sinking", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/RMS_Titanic_3.jpg/1200px-RMS_Titanic_3.jpg?20181211220143", top: "70%", left: "95%", rotate: "-25deg", size: "lg", aspect: "aspect-[16/10]" },
       { text: "Black Death", img: "https://upload.wikimedia.org/wikipedia/commons/c/c2/The_Black_Death.jpg?20130127212131", top: "-8%", left: "60%", rotate: "6deg", size: "sm", aspect: "aspect-square" },
@@ -25,7 +25,7 @@ const BackgroundCollage: React.FC<{ dimmed?: boolean }> = ({ dimmed }) => {
       { text: "Industrial Revolution", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Hartmann_Maschinenhalle_1868_%2801%29.jpg/1280px-Hartmann_Maschinenhalle_1868_%2801%29.jpg", top: "55%", left: "-6%", rotate: "14deg", size: "lg", aspect: "aspect-[3/4]" },
       { text: "World War 2", img: "https://upload.wikimedia.org/wikipedia/commons/c/c8/Destroyed_buildings_in_Batina_after_the_battle%2C_30th_November_1944.jpg", top: "45%", left: "88%", rotate: "-12deg", size: "lg", aspect: "aspect-[3/4]" },
       { text: "French Revolution", img: "https://upload.wikimedia.org/wikipedia/commons/f/fb/French_Revolution-1792-8-10_w.jpg?20111015205633", top: "92%", left: "85%", rotate: "10deg", size: "sm", aspect: "aspect-square" },
-      { text: "Discovery of Penecillan", img: "https://upload.wikimedia.org/wikipedia/commons/a/a6/Penicillin_Past%2C_Present_and_Future-_the_Development_and_Production_of_Penicillin%2C_England%2C_1944_D17802.jpg?20130131164559", top: "-5%", left: "32%", rotate: "5deg", size: "md", aspect: "aspect-[3/2]" },
+      { text: "Discovery of Penicillin", img: "https://upload.wikimedia.org/wikipedia/commons/a/a6/Penicillin_Past%2C_Present_and_Future-_the_Development_and_Production_of_Penicillin%2C_England%2C_1944_D17802.jpg?20130131164559", top: "-5%", left: "32%", rotate: "5deg", size: "md", aspect: "aspect-[3/2]" },
       { text: "Declaration of Independence", img: "https://upload.wikimedia.org/wikipedia/commons/f/f9/Declaration_of_Independence_(1819),_by_John_Trumbull.jpg", top: "60%", left: "12%", rotate: "-7deg", size: "lg", aspect: "aspect-square" },
     ],
     []
