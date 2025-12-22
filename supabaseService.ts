@@ -133,7 +133,7 @@ export async function fetchRandomEvent(mode: GameMode, score: number, excludeYea
  * Leaderboard helpers: load top N and save an entry.
  * Use explicit selects for stability.
  */
-export async function loadLeaderboard(limit = 20): Promise<LeaderboardEntry[]> {
+export async function loadLeaderboard(limit = 500): Promise<LeaderboardEntry[]> {
   const { data, error } = await supabase
     .from<LeaderboardEntry>('leaderboard')
     .select('name, mode, score')
