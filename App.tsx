@@ -143,7 +143,7 @@ const BackgroundCollage: React.FC<{ dimmed?: boolean }> = ({ dimmed }) => {
         <div
           key={idx}
           aria-hidden
-          className="absolute hidden md:flex flex-col items-center p-1.5 bg-white shadow-2xl border border-slate-200 overflow-hidden collage-animate"
+          className="absolute flex md:flex flex-col items-center p-1.5 bg-white shadow-2xl border border-slate-200 overflow-hidden collage-animate"
           style={
             {
               top: item.top,
